@@ -1,0 +1,8 @@
+version: '2'
+services:
+  iodine0:
+    build: .
+    ports:
+     - "0.0.0.0:53:53/udp"
+    network_mode: "host"
+    privileged: true

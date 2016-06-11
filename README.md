@@ -1,6 +1,12 @@
-# iodine-docker
+# docker-iodine
 Dockerized iodine http://code.kryo.se/iodine/
 
-Update the environment variables in entrypoint.sh before building
+Update the environment variables in "config" file before building
 
-sudo docker run -it -p 0.0.0.0:53:53/udp --rm --privileged=true -P --net=host --name iodine xavi/iodine&
+Building
+=========
+`sudo docker build -t xavi/iodine .`
+
+Running
+=======
+`sudo docker run -d -p 0.0.0.0:53:53/udp --privileged=true -P --net=host --name iodine xavi/iodine`
