@@ -1,11 +1,14 @@
-from ubuntu:latest
+FROM phusion/baseimage:latest
+MAINTAINER Infanta Xavier <xavier8338@yahoo.com>
 
 RUN apt-get update
-RUN apt-get install -y iodine iptables iptables-persistent
-COPY firerules.txt /etc/iptables/rules.v4
-COPY entrypoint.sh /
-COPY config /
+RUN apt-get install -y net-tools iptables iodine
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod 755 /entrypoint.sh
 
-CMD /bin/bash /entrypoint.sh EXTERNAL_IP INTERNAL_IP DOMAIN_NAME
+ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 53
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
